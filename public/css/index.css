@@ -1,0 +1,137 @@
+@import "base.css";
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo para o container geral */
+.feedback-container {
+    width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Estilo para o cabeçalho */
+h1 {
+    font-size: 64px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Opções de avaliação em linha */
+.rating-options {
+    display: flex; /* Usar flexbox para alinhar os itens lado a lado */
+    justify-content: center; /* Centralizar horizontalmente */
+    margin: 20px 0; /* Margem para separação */
+}
+
+/* Estilo para as opções de avaliação */
+.rating-option {
+    display: flex;
+    align-items: center;
+    margin: 0 10px; /* Espaçamento entre as opções */
+}
+
+.rating-checkbox {
+    display: none; /* Esconde o checkbox padrão */
+}
+
+.rating-label {
+    border: 2px solid #ddd;
+    padding: 15px 20px; /* Ajustar o padding para melhor visualização */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    font-size: 24px; /* Ajustar o tamanho da fonte */
+}
+
+/* Muda a borda ao selecionar */
+.rating-checkbox:checked + .rating-label {
+    border-color: #51cf66; /* Cor da borda quando selecionado */
+}
+
+/* Estilo para o botão de enviar */
+.submit-button {
+    background-color: #51cf66; /* Cor do botão */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #45b358; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilo para o textarea */
+textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    height: 200px;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+/* Estilo para o label */
+.question label {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+    display: block;
+}
+
+/* Alinhamento central */
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.rating-checkbox:checked + .rating-label {
+    border-color: #0d00e2;
+}
+
+.rating-checkbox[value="1"] + .rating-label {
+    background-color: #ff6b6b; /* Pior */
+}
+
+.rating-checkbox[value="2"] + .rating-label {
+    background-color: #ff6b6b; /* Pior */
+}
+
+.rating-checkbox[value="3"] + .rating-label {
+    background-color: #ff6b6b; /* Pior */
+}
+
+.rating-checkbox[value="4"] + .rating-label,
+.rating-checkbox[value="5"] + .rating-label,
+.rating-checkbox[value="6"] + .rating-label,
+.rating-checkbox[value="7"] + .rating-label {
+    background-color: #f6d365; /* Neutro */
+}
+
+.rating-checkbox[value="8"] + .rating-label,
+.rating-checkbox[value="9"] + .rating-label,
+.rating-checkbox[value="10"] + .rating-label {
+    background-color: #51cf66; /* Ótimo */
+}

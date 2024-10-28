@@ -1,0 +1,14 @@
+{
+    "require": {
+        "php": "^8.2",
+        "ext-pdo": "*",
+        "phpmailer/phpmailer": "*",
+        "league/oauth2-google": "*",
+        "firebase/php-jwt": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
