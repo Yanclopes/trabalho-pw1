@@ -49,7 +49,7 @@ class QuestionController extends BaseController
             require __DIR__ . '/../View/insert-device-id.php';
             return;
         }
-        $previous = $this->getParam('previous');
+        $previous = $this->getParam('previous', '0');
         $questions = $this->getQuestionModel()->getNextQuestion($previous);
         require __DIR__ . '/../View/question.php';
     }
