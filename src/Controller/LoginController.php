@@ -53,7 +53,8 @@ class LoginController extends BaseController
         $token = $this->createToken($userData);
 
         setcookie('SESSID', $token, time() + 3600, "/", "", true, true);
-
+        $_COOKIE['SESSID'] = $token;
+        sleep(3);
         if ($this->forceChangePassword()) {
             header("Location:/change-password");
             exit();

@@ -76,18 +76,18 @@ require_once 'public/nav.php';
                 return;
             }
             const payload = jwt_decode(sessionToken);
-            console.log(payload)
             if (!payload.user.isAdmin) {
                 e.preventDefault();
                 alert('Você não tem permissão para criar um usuário.');
                 return;
             }
         });
+
         function getCookie(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
-        },
+        }
     });
 </script>
 

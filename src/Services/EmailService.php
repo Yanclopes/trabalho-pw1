@@ -11,7 +11,6 @@ class EmailService
     {
         $mail = new PHPMailer(true);
         try {
-            echo 'teste';
             $mail->isSMTP();
             $mail->Host = 'mailhog';
             $mail->SMTPAuth = false;

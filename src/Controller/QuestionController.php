@@ -46,7 +46,7 @@ class QuestionController extends BaseController
     {
         $device_id = $this->getParam('device_id');
         if(!isset($device_id)){
-            require __DIR__ . '/../View/insert-device-id.php';
+            header('Location: /device');
             return;
         }
         $previous = $this->getParam('previous', '0');

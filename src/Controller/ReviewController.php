@@ -26,10 +26,9 @@ class ReviewController extends BaseController
 
         $questionId = $this->getParam('question_id');
         $rating = $this->getParam('rating');
-        $text = $this->getParam('text');
-
+        $text = $this->getParam('text', '');
         try {
-            $this->getReviewModel()->create($device_id, $questionId, $rating, $text);
+            $this->getReviewModel()->create($questionId, $device_id, $rating, $text);
             header('Location: /question?previous=' . $questionId . '&device_id=' . $device_id);
         } catch (\Exception $exception) {
             throw new \Exception('Erro ao criar feedback, Por favor informe o responsavel pelo dispositivo!');

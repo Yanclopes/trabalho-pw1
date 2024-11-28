@@ -29,6 +29,9 @@ class JWTService
 
     public function validateToken($token)
     {
+        if (!$token) {
+            header('location: /login');
+        }
         try {
             $decoded = JWT::decode($token, new Key($this->secretKey, $this->algorithm));
             return (array) $decoded;

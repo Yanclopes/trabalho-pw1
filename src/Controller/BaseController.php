@@ -15,11 +15,16 @@ class BaseController
         return $this->_JWTService ;
     }
 
+    public function getToken()
+    {
+        return $_COOKIE['SESSID'] ?? null;
+    }
+
     protected function validateToken(): false
     {
         $token = $_COOKIE['SESSID'];
         if(empty($token)){
-            return false;
+            header("Location:/login");
         }
 
         return $this->getJWTService()->validateToken($token) != false;
@@ -32,7 +37,7 @@ class BaseController
 
     protected function getPayload(): false|array
     {
-        $token = $_COOKIE['SESSID'];
+        $token = $_COOKIE['SESSID'] ?? null;
 
         return $this->getJWTService()->validateToken($token);
     }

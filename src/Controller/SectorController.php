@@ -2,21 +2,12 @@
 
 namespace App\Controller;
 
-use App\Model\Device;
 use App\Model\Sector;
 
-class DeviceController extends BaseController
+class SectorController extends BaseController
 {
-    private readonly ?Device $_Device;
-    private ?Sector $_Sector;
+    private ?Sector $_Sector = null;
 
-    private function getDeviceModel(): Device
-    {
-        if(!isset($this->_Device )){
-            $this->_Device  = new Device();
-        }
-        return $this->_Device ;
-    }
     private function getSectorModel(): Sector
     {
         if (!isset($this->_Sector)) {
@@ -24,38 +15,6 @@ class DeviceController extends BaseController
         }
         return $this->_Sector;
     }
-
-    public function list()
-    {
-        $devices = $this->getDeviceModel()->read();
-        $sectors = $this->getSectorModel()->read();
-        require __DIR__ . '/../View/admin-device.php';
-    }
-
-    private function deviceIsValid($id): bool{
-        $devices = $this->getDeviceModel()->getActiveDevices($id);
-        if (!empty($devices) && isset($devices[0]['device_id']) && $devices[0]['device_id'] === $id) {
-            return true;
-        }
-        return false;
-    }
-
-    public function selectDevice()
-    {
-        $devices = $this->getDeviceModel()->getActiveDevices();
-        require __DIR__ . '/../View/insert-device-id.php';
-    }
-
-    public function validateDevice(){
-        $id = $this->getParam('device_id');
-        if(!isset($id) || !$this->deviceIsValid(intval($id))) {
-            $isInvalidDevice = true;
-            require __DIR__ . '/../View/insert-device-id.php';
-            return;
-        }
-        header('Location: /question?device_id='.$id);
-    }
-
     public function create()
     {
 
@@ -74,6 +33,12 @@ class DeviceController extends BaseController
             throw new \Exception("Erro ao criar o setor.");
         }
         header('Location: /admin/sectors');
+    }
+
+    public function list()
+    {
+        $sectors = $this->getSectorModel()->read();
+        require __DIR__ . '/../View/admin-sector.php';
     }
 
     public function update()

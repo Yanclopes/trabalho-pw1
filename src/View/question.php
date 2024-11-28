@@ -2,6 +2,7 @@
 require_once 'public/header.php';
 $isLast = false;
 $deviceId = $_GET['device_id'] ?? null;
+$hasPrevious = isset($_GET['previous']);
 
 if (isset($questions['question_id'])) {
     $questionId = $questions['question_id'];
@@ -22,10 +23,7 @@ if (isset($questions['question_id'])) {
         <div class="flex flex-col w-full">
             <div>
                 <input type="hidden" name="question_id" value="<?php echo $questionId; ?>">
-
-,
                 <p>Avalie seu atendimento de 0 a 10, onde 0 é péssimo, 5/6 é neutro, e 10 é ótimo.</p>
-
                 <div class="rating-options">
                     <?php for ($i = 1; $i <= 10; $i++): ?>
                         <div class="rating-option">
@@ -46,6 +44,31 @@ if (isset($questions['question_id'])) {
         </div>
         <?php endif; ?>
     </form>
+    <?php if ($hasPrevious): ?>
+        <p id="timer" style="font-size: 20px; font-weight: bold;"></p>
+    <?php endif; ?>
 </div>
-</body>
 
+<script>
+    const isLastQuestion = <?php echo json_encode($isLast); ?>;
+    const deviceId = "<?php echo htmlspecialchars($deviceId); ?>";
+    const hasPrevious = <?php echo json_encode($hasPrevious); ?>;
+    const redirectTime = isLastQuestion ? 10 : 30;
+    let timeLeft = redirectTime;
+
+    if (hasPrevious) {
+        const timerElement = document.getElementById('timer');
+        const updateTimer = () => {
+            timerElement.textContent = `Retornando em ${timeLeft} segundos...`;
+            timeLeft--;
+            if (timeLeft < 0) {
+                window.location.href = `/question?device_id=${deviceId}`;
+            }
+        };
+
+        updateTimer();
+        const countdownInterval = setInterval(updateTimer, 1000);
+    }
+</script>
+
+</body>
